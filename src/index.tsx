@@ -24,6 +24,7 @@ root.render(
             colorTextSecondary: "#f6ffed",
             // Alias Token
             colorBgContainer: "#f6ffed",
+            colorBgLayout: "#ebebeb"
           },
         }}
       >

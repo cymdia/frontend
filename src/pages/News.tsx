@@ -1,5 +1,7 @@
+import { Layout } from "antd";
+
 type Props = {};
 
 export const News = (props: Props) => {
-  return <div>News</div>;
+  return <div ><Layout>News</Layout></div>;
 };

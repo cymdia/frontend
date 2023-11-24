@@ -5,6 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 
 import { Logo } from "../components/Logo";
 import NavBar from "../components/NavBar";
+import { Outlet } from "react-router";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ export const Home = (props: Props) => {
           <Avatar size="small" icon={<UserOutlined />} />
         </Flex>
       </Header>
+      <Outlet />
     </div>
   );
 };
