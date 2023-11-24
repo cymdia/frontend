@@ -1,0 +1,36 @@
+@import "/src/styles/utils/variables";
+
+@mixin primary-selection-text-styles {
+  &::selection {
+    background-color: $primary-color;
+  }
+}
+
+@mixin accent-selection-text-styles {
+  &::selection {
+    background-color: $accent-color;
+  }
+}
+
+@mixin position-center {
+  top: 50%;
+  left: 50%;
+  transform: $traslate-postion-center;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column-stretch {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+@mixin not-selected-text {
+  user-select: none;
+}
