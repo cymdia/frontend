@@ -7,16 +7,20 @@ import { Logo } from "../components/Logo";
 import NavBar from "../components/NavBar";
 import { Outlet } from "react-router";
 
+import "./styles/_home.scss";
+
 type Props = {};
 
 export const Home = (props: Props) => {
   return (
     <div>
-      <Header>
+      <Header className="header">
         <Flex align="center" justify="space-between">
           <Logo />
           <NavBar />
-          <Avatar size="small" icon={<UserOutlined />} />
+          <div className="avatart">
+            <Avatar size="small" icon={<UserOutlined />} />
+          </div>
         </Flex>
       </Header>
       <Outlet />

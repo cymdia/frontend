@@ -1,0 +1,8 @@
+.header-menu {
+  border-bottom: none;
+  .header-menu-item {
+    &::after {
+      border-bottom-width: 0px !important;
+    }
+  }
+}

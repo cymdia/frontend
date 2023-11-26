@@ -2,16 +2,20 @@ import { useState } from "react";
 import { Menu, MenuProps } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import "../styles/components/_navBar.scss";
+
 type Props = {};
 
 const items: MenuProps["items"] = [
   {
     label: "News",
     key: "news",
+    className: "header-menu-item",
   },
   {
     label: "Events",
     key: "events",
+    className: "header-menu-item",
   },
 ];
 
@@ -32,7 +36,8 @@ const NavBar = (props: Props) => {
       selectedKeys={[current]}
       mode="horizontal"
       items={items}
-      inlineCollapsed={false}
+      className="header-menu"
+      disabledOverflow={true}
     />
   );
 };

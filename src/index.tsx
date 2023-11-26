@@ -18,13 +18,30 @@ root.render(
         theme={{
           token: {
             // Seed Token
-            colorPrimary: "#00b96b",
+
+            colorPrimary: "#0c2749",
             borderRadius: 2,
             colorText: "#00b96b",
-            colorTextSecondary: "#f6ffed",
+            colorTextSecondary: "#39B54A",
             // Alias Token
-            colorBgContainer: "#f6ffed",
-            colorBgLayout: "#ebebeb"
+            colorBgContainer: "#39B54A",
+            colorBgLayout: "#ebebeb",
+            fontFamily: "Rubik",
+          },
+          components: {
+            Menu: {
+              itemSelectedBg: "#39b54a",
+              itemActiveBg: "#39b54a",
+              itemColor: "#ffffff",
+              itemHoverColor: "#ffffff",
+              itemHoverBg: "transparent",
+              itemBg: "transparent",
+              itemSelectedColor: "#ffffff",
+              horizontalItemHoverColor: "#ffffff",
+              horizontalItemHoverBg: "transparent",
+              horizontalItemSelectedBg: "transparent",
+              horizontalItemSelectedColor: "#ffffff",
+            },
           },
         }}
       >
