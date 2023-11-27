@@ -151,7 +151,7 @@ export const News = (props: Props) => {
               Зберегти
             </Typography.Link>
             <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a href="#">Відмінити</a>
+              <p>Відмінити</p>
             </Popconfirm>
           </span>
         ) : (
