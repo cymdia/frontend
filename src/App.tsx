@@ -1,5 +1,12 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Events, Home, News } from "./pages";
+import {
+  Events,
+  GenericNotFound,
+  Home,
+  News,
+  NotFound,
+  Redirect,
+} from "./pages";
 
 import "./App.scss";
 
@@ -13,6 +20,18 @@ const routes: RouteT[] = [
   {
     path: "events",
     element: <Events />,
+  },
+  {
+    path: "404",
+    element: <NotFound />,
+  },
+  {
+    path: "*",
+    element: <GenericNotFound />,
+  },
+  {
+    path: "",
+    element: <Redirect />,
   },
 ];
 
@@ -29,7 +48,7 @@ const App = () => {
 
 const CustomRoute = (isIndexPage: boolean, route: RouteT) => {
   return isIndexPage ? (
-    <Route index path={route.path} element={route.element} key={route.path} />
+    <Route index element={route.element} key={route.path} path={route.path} />
   ) : (
     <Route path={route.path} element={route.element} key={route.path} />
   );
