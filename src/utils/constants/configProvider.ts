@@ -6,26 +6,26 @@ export const theme = {
 
     colorPrimary: "#0c2749",
     borderRadius: 2,
-    colorText: "#00b96b",
+    colorText: style.blueDarkColor,
     colorTextSecondary: style.accentColor,
     // Alias Token
     colorBgContainer: style.accentColor,
-    colorBgLayout: "#ebebeb",
+    colorBgLayout: style.primaryBackgroundColor,
     fontFamily: "Rubik",
   },
   components: {
     Menu: {
       itemSelectedBg: style.accentColor,
       itemActiveBg: style.accentColor,
-      itemColor: "#ffffff",
-      itemHoverColor: "#ffffff",
+      itemColor: style.whiteColor,
+      itemHoverColor: style.whiteColor,
       itemHoverBg: "transparent",
       itemBg: "transparent",
-      itemSelectedColor: "#ffffff",
-      horizontalItemHoverColor: "#ffffff",
+      itemSelectedColor: style.whiteColor,
+      horizontalItemHoverColor: style.whiteColor,
       horizontalItemHoverBg: "transparent",
       horizontalItemSelectedBg: style.accentColor,
-      horizontalItemSelectedColor: "#ffffff",
+      horizontalItemSelectedColor: style.whiteColor,
     },
   },
 };
