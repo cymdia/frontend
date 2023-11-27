@@ -1,6 +1,7 @@
+import { ThemeConfig } from "antd/es/config-provider";
 import style from "../../styles/utils/_variables.module.scss";
 
-export const theme = {
+export const theme: ThemeConfig = {
   token: {
     // Seed Token
 
@@ -9,7 +10,7 @@ export const theme = {
     colorText: style.blueDarkColor,
     colorTextSecondary: style.accentColor,
     // Alias Token
-    colorBgContainer: style.accentColor,
+    colorBgContainer: style.whiteColor,
     colorBgLayout: style.primaryBackgroundColor,
     fontFamily: "Rubik",
   },
@@ -26,6 +27,10 @@ export const theme = {
       horizontalItemHoverBg: "transparent",
       horizontalItemSelectedBg: style.accentColor,
       horizontalItemSelectedColor: style.whiteColor,
+    },
+    Table: {
+      bodySortBg: style.whiteColor,
+      colorText: style.dartkGrey,
     },
   },
 };

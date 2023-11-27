@@ -1,0 +1,39 @@
+.editable-cell {
+  position: relative;
+}
+
+.editable-cell-value-wrap {
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+  padding: 4px 11px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.news-layout {
+  height: calc(100vh - 64px);
+  padding: 32px;
+  padding-bottom: 45px;
+
+  & .ant-table-wrapper {
+    height: calc(100% - 77px);
+    & .ant-spin-nested-loading {
+      height: 100%;
+
+      & .ant-spin-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & .ant-table {
+          height: 90%;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
