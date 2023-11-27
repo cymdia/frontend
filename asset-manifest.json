@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.b5d70b69.css",
+    "main.css": "/frontend/static/css/main.8c69df77.css",
     "main.js": "/frontend/static/js/main.3b7f577a.js",
     "static/js/787.9e9f4ffd.chunk.js": "/frontend/static/js/787.9e9f4ffd.chunk.js",
     "static/media/Rubik-Bold.ttf": "/frontend/static/media/Rubik-Bold.c934eb22c2c69992b34c.ttf",
@@ -12,12 +12,12 @@
     "static/media/Montserrat-Medium.ttf": "/frontend/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
     "static/media/Montserrat-Light.ttf": "/frontend/static/media/Montserrat-Light.7179b7d2ac9b599db5f9.ttf",
     "index.html": "/frontend/index.html",
-    "main.b5d70b69.css.map": "/frontend/static/css/main.b5d70b69.css.map",
+    "main.8c69df77.css.map": "/frontend/static/css/main.8c69df77.css.map",
     "main.3b7f577a.js.map": "/frontend/static/js/main.3b7f577a.js.map",
     "787.9e9f4ffd.chunk.js.map": "/frontend/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5d70b69.css",
+    "static/css/main.8c69df77.css",
     "static/js/main.3b7f577a.js"
   ]
 }
