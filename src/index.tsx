@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router basename="/frontend">
+    <Router>
       <ConfigProvider theme={theme}>
         <App />
       </ConfigProvider>
