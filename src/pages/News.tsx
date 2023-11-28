@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 
-import {
-  DatePicker,
-  Form,
-  Input,
-  Layout,
-  Popconfirm,
-  Table,
-  Typography,
-} from "antd";
+import { Form, Input, Layout, Popconfirm, Table, Typography } from "antd";
 import Title from "antd/es/typography/Title";
-import { RangePickerProps } from "antd/es/date-picker";
 
 import dayjs from "dayjs";
 
 import Actions from "../components/Actions";
+import { constants } from "../utils/constants";
+import { parseDate } from "../utils/helpers";
+
 import "./styles/_news.scss";
-import { parseDate } from "../utils";
 
 type Props = {};
 interface Item {
@@ -33,9 +26,9 @@ for (let i = 0; i < 100; i++) {
     name: `Новина ${i}`,
     date:
       i % 2 === 0
-        ? dayjs(new Date()).format("DD-MM-YYYY HH:mm").toString()
+        ? dayjs(new Date()).format(constants.dateFormat).toString()
         : dayjs(new Date(new Date().setDate(21)))
-            .format("DD-MM-YYYY HH:mm")
+            .format(constants.dateFormat)
             .toString(),
   });
 }
@@ -43,6 +36,7 @@ for (let i = 0; i < 100; i++) {
 //  type: i % 2 === 0 ? "Семінар" : " Тренінг",
 //     orientation: i % 2 === 0 ? "Виховники" : "Міжнародники",
 //     ageRestrictions: i % 2 === 0 ? "Суменята" : "Дружинники",
+
 interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
@@ -63,35 +57,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
   children,
   ...restProps
 }) => {
-  const range = (start: number, end: number) => {
-    const result = [];
-    for (let i = start; i < end; i++) {
-      result.push(i);
-    }
-    return result;
-  };
-
-  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
-    return current && current < dayjs().endOf("day");
-  };
-
-  const disabledDateTime = () => ({
-    disabledHours: () => range(0, 24).splice(4, 20),
-    disabledMinutes: () => range(30, 60),
-  });
-
-  const inputNode =
-    inputType === "date" ? (
-      <DatePicker
-        format="DD-MM-YYYY HH:mm"
-        disabledDate={disabledDate}
-        disabledTime={disabledDateTime}
-        showTime={{ defaultValue: dayjs(record.date) }}
-        defaultValue={dayjs(record.date)}
-      />
-    ) : (
-      <Input />
-    );
+  const inputNode = <Input />;
 
   return (
     <td {...restProps}>
@@ -105,7 +71,6 @@ const EditableCell: React.FC<EditableCellProps> = ({
               message: `Введіть ${title}!`,
             },
           ]}
-          initialValue={inputType === "date" ? dayjs(record.date) : record.name}
         >
           {inputNode}
         </Form.Item>
@@ -273,3 +238,19 @@ export const News = (props: Props) => {
     </Layout>
   );
 };
+
+// const range = (start: number, end: number) => {
+//   const result = [];
+//   for (let i = start; i < end; i++) {
+//     result.push(i);
+//   }
+//   return result;
+// };
+// const disabledDate: RangePickerProps["disabledDate"] = (current) => {
+//   return current && current < dayjs().endOf("day");
+// };
+
+// const disabledDateTime = () => ({
+//   disabledHours: () => range(0, 24).splice(4, 20),
+//   disabledMinutes: () => range(30, 60),
+// });
