@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ConfigProvider } from "antd";
 
 import "./index.scss";
@@ -14,11 +14,13 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router basename="/frontend">
+    <HashRouter basename="/frontend">
+      {/* <Router basename="/frontend"> */}
       <ConfigProvider theme={theme}>
         <App />
       </ConfigProvider>
-    </Router>
+      {/* </Router> */}
+    </HashRouter>
   </React.StrictMode>,
 );
 

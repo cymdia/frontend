@@ -1,9 +1,14 @@
+import { Flex } from "antd";
 import React from "react";
 
 type Props = {};
 
 const Actions = (props: Props) => {
-  return <div>Actions</div>;
+  return (
+    <Flex>
+      <></>
+    </Flex>
+  );
 };
 
 export default Actions;
