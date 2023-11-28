@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 
 import Actions from "../components/Actions";
 import { constants } from "../utils/constants";
-import { parseDate } from "../utils/helpers";
+import { sortDate } from "../utils/helpers";
 
 import "./styles/_news.scss";
 
@@ -146,11 +146,7 @@ export const News = (props: Props) => {
       dataIndex: "date",
       width: "20%",
       editable: false,
-      sorter: (a: Item, b: Item) => {
-        const dateA = parseDate(a.date);
-        const dateB = parseDate(b.date);
-        return dateA.getTime() - dateB.getTime();
-      },
+      sorter: (a: Item, b: Item) => sortDate(a.date, b.date),
     },
     {
       title: "Дії",
