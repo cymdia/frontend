@@ -30,7 +30,7 @@ export const theme: ThemeConfig = {
     },
     Table: {
       bodySortBg: style.whiteColor,
-      colorText: style.dartkGrey,
+      colorText: style.dartkGreyColor,
     },
   },
 };

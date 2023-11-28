@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 
-import { Form, Input, Layout, Popconfirm, Table, Typography } from "antd";
-
-import "./styles/_news.scss";
+import {
+  DatePicker,
+  Form,
+  Input,
+  Layout,
+  Popconfirm,
+  Table,
+  Typography,
+} from "antd";
 import Title from "antd/es/typography/Title";
+import { RangePickerProps } from "antd/es/date-picker";
+
+import dayjs from "dayjs";
+
 import Actions from "../components/Actions";
+import "./styles/_news.scss";
+import { parseDate } from "../utils";
 
 type Props = {};
 interface Item {
@@ -14,20 +26,17 @@ interface Item {
   date: string;
 }
 
-const optionsDate: Intl.DateTimeFormatOptions = {
-  day: "2-digit",
-  month: "2-digit",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-};
 const originData: Item[] = [];
 for (let i = 0; i < 100; i++) {
   originData.push({
     key: i.toString(),
     name: `Новина ${i}`,
-
-    date: new Date().toLocaleDateString("uk-UA", optionsDate),
+    date:
+      i % 2 === 0
+        ? dayjs(new Date()).format("DD-MM-YYYY HH:mm").toString()
+        : dayjs(new Date(new Date().setDate(21)))
+            .format("DD-MM-YYYY HH:mm")
+            .toString(),
   });
 }
 
@@ -38,7 +47,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;
   title: any;
-  inputType: "number" | "text";
+  inputType: "date" | "text";
   record: Item;
   index: number;
   children: React.ReactNode;
@@ -54,7 +63,35 @@ const EditableCell: React.FC<EditableCellProps> = ({
   children,
   ...restProps
 }) => {
-  const inputNode = <Input />;
+  const range = (start: number, end: number) => {
+    const result = [];
+    for (let i = start; i < end; i++) {
+      result.push(i);
+    }
+    return result;
+  };
+
+  const disabledDate: RangePickerProps["disabledDate"] = (current) => {
+    return current && current < dayjs().endOf("day");
+  };
+
+  const disabledDateTime = () => ({
+    disabledHours: () => range(0, 24).splice(4, 20),
+    disabledMinutes: () => range(30, 60),
+  });
+
+  const inputNode =
+    inputType === "date" ? (
+      <DatePicker
+        format="DD-MM-YYYY HH:mm"
+        disabledDate={disabledDate}
+        disabledTime={disabledDateTime}
+        showTime={{ defaultValue: dayjs(record.date) }}
+        defaultValue={dayjs(record.date)}
+      />
+    ) : (
+      <Input />
+    );
 
   return (
     <td {...restProps}>
@@ -65,9 +102,10 @@ const EditableCell: React.FC<EditableCellProps> = ({
           rules={[
             {
               required: true,
-              message: `Please Input ${title}!`,
+              message: `Введіть ${title}!`,
             },
           ]}
+          initialValue={inputType === "date" ? dayjs(record.date) : record.name}
         >
           {inputNode}
         </Form.Item>
@@ -124,6 +162,13 @@ export const News = (props: Props) => {
     }
   };
 
+  const deleteNew = (record: Partial<Item>) => {
+    const newData = [...data];
+    const index = data.findIndex((item) => record.key === item.key);
+    newData.splice(index, 1);
+    setData(newData);
+  };
+
   const columns = [
     {
       title: "Новина",
@@ -135,32 +180,54 @@ export const News = (props: Props) => {
       title: "Дата",
       dataIndex: "date",
       width: "20%",
-      editable: true,
+      editable: false,
+      sorter: (a: Item, b: Item) => {
+        const dateA = parseDate(a.date);
+        const dateB = parseDate(b.date);
+        return dateA.getTime() - dateB.getTime();
+      },
     },
     {
       title: "Дії",
       dataIndex: "operation",
       render: (_: any, record: Item) => {
         const editable = isEditing(record);
-        return editable ? (
-          <span>
+        return (
+          <>
+            {editable ? (
+              <span>
+                <Typography.Link
+                  onClick={() => save(record.key)}
+                  style={{ marginRight: 8 }}
+                >
+                  Зберегти
+                </Typography.Link>
+                <Popconfirm
+                  title="Ви впевнені, що хочете скасувати?"
+                  onConfirm={cancel}
+                >
+                  <Typography.Link style={{ marginRight: 8 }}>
+                    Скасувати
+                  </Typography.Link>
+                </Popconfirm>
+              </span>
+            ) : (
+              <Typography.Link
+                disabled={editingKey !== ""}
+                onClick={() => edit(record)}
+                className="edit-btn"
+              >
+                Редагувати
+              </Typography.Link>
+            )}
             <Typography.Link
-              onClick={() => save(record.key)}
-              style={{ marginRight: 8 }}
+              disabled={editingKey !== ""}
+              onClick={() => deleteNew(record)}
+              className="delete-btn"
             >
-              Зберегти
+              Видалити
             </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <Typography.Link>Відмінити</Typography.Link>
-            </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link
-            disabled={editingKey !== ""}
-            onClick={() => edit(record)}
-          >
-            Редагувати
-          </Typography.Link>
+          </>
         );
       },
     },
@@ -174,7 +241,7 @@ export const News = (props: Props) => {
       ...col,
       onCell: (record: Item) => ({
         record,
-        inputType: "text",
+        inputType: col.dataIndex === "date" ? "date" : "text",
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
