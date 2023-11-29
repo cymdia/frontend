@@ -1,7 +1,9 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.21d0f053.css",
-    "main.js": "/frontend/static/js/main.9f2785cb.js",
+    "main.css": "/frontend/static/css/main.e32e7042.css",
+    "main.js": "/frontend/static/js/main.9dae8c04.js",
+    "static/css/271.bc09f080.chunk.css": "/frontend/static/css/271.bc09f080.chunk.css",
+    "static/js/271.4fe25eef.chunk.js": "/frontend/static/js/271.4fe25eef.chunk.js",
     "static/js/787.9e9f4ffd.chunk.js": "/frontend/static/js/787.9e9f4ffd.chunk.js",
     "static/media/Rubik-Bold.ttf": "/frontend/static/media/Rubik-Bold.c934eb22c2c69992b34c.ttf",
     "static/media/Rubik-SemiBold.ttf": "/frontend/static/media/Rubik-SemiBold.869208702057daef053d.ttf",
@@ -12,12 +14,14 @@
     "static/media/Montserrat-Medium.ttf": "/frontend/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
     "static/media/Montserrat-Light.ttf": "/frontend/static/media/Montserrat-Light.7179b7d2ac9b599db5f9.ttf",
     "index.html": "/frontend/index.html",
-    "main.21d0f053.css.map": "/frontend/static/css/main.21d0f053.css.map",
-    "main.9f2785cb.js.map": "/frontend/static/js/main.9f2785cb.js.map",
+    "main.e32e7042.css.map": "/frontend/static/css/main.e32e7042.css.map",
+    "main.9dae8c04.js.map": "/frontend/static/js/main.9dae8c04.js.map",
+    "271.bc09f080.chunk.css.map": "/frontend/static/css/271.bc09f080.chunk.css.map",
+    "271.4fe25eef.chunk.js.map": "/frontend/static/js/271.4fe25eef.chunk.js.map",
     "787.9e9f4ffd.chunk.js.map": "/frontend/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.21d0f053.css",
-    "static/js/main.9f2785cb.js"
+    "static/css/main.e32e7042.css",
+    "static/js/main.9dae8c04.js"
   ]
 }
