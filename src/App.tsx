@@ -1,10 +1,15 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Events, GenericNotFound, News, NotFound, Redirect } from "./pages";
+
+import { GenericNotFound, NotFound, Redirect } from "./pages";
+import Loader from "./components/Loader";
 
 import "./App.scss";
 
 const Home = lazy(() => import("./pages/Home"));
+const News = lazy(() => import("./pages/News"));
+const Events = lazy(() => import("./pages/Events"));
+
 type RouteT = { path: string; element: JSX.Element };
 
 const routes: RouteT[] = [
@@ -33,7 +38,7 @@ const routes: RouteT[] = [
 const App = () => {
   const location = useLocation();
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader size={"large"} fullscreen={true} />}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />}>
           {routes.map((route) => CustomRoute(route.path === "news", route))}

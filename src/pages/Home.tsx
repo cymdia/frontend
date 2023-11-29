@@ -28,4 +28,5 @@ const Home = (props: Props) => {
     </div>
   );
 };
+
 export default Home;

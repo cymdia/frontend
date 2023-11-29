@@ -1,5 +1,7 @@
 type Props = {};
 
-export const Events = (props: Props) => {
+const Events = (props: Props) => {
   return <div>Events</div>;
 };
+
+export default Events;

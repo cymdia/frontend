@@ -81,7 +81,7 @@ const EditableCell: React.FC<EditableCellProps> = ({
   );
 };
 
-export const News = (props: Props) => {
+const News = (props: Props) => {
   const [form] = Form.useForm();
   const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState("");
@@ -234,6 +234,8 @@ export const News = (props: Props) => {
     </Layout>
   );
 };
+
+export default News;
 
 // const range = (start: number, end: number) => {
 //   const result = [];
