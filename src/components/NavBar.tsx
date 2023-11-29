@@ -26,7 +26,6 @@ const NavBar = (props: Props) => {
   const navigate = useNavigate();
 
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e, location);
     setCurrent(e.key);
     navigate(e.key);
   };

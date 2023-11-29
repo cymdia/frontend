@@ -16,12 +16,12 @@
 }
 
 .news-layout {
-  height: calc(100vh - 64px);
   padding: 32px;
   padding-bottom: 45px;
+  gap: 10px;
 
   & .ant-table-wrapper {
-    height: calc(100% - 77px);
+    height: calc(100% - 137px);
     & .ant-spin-nested-loading {
       height: 100%;
 

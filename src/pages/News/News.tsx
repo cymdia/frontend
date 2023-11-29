@@ -5,9 +5,9 @@ import Title from "antd/es/typography/Title";
 
 import dayjs from "dayjs";
 
-import Actions from "../components/Actions";
-import { constants } from "../utils/constants";
-import { sortDate } from "../utils/helpers";
+import Actions from "../../components/Actions";
+import { constants } from "../../utils/constants";
+import { sortDate } from "../../utils/helpers";
 
 import "./styles/_news.scss";
 
@@ -211,9 +211,10 @@ const News = (props: Props) => {
   });
 
   return (
-    <Layout className="news-layout">
+    <Layout className="news-layout layout">
       <Title>Новини</Title>
       <Actions />
+
       <Form form={form} component={false}>
         <Table
           components={{

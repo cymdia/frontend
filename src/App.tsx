@@ -7,15 +7,29 @@ import Loader from "./components/Loader";
 import "./App.scss";
 
 const Home = lazy(() => import("./pages/Home"));
-const News = lazy(() => import("./pages/News"));
+const News = lazy(() => import("./pages/News/News"));
+const WrapperNews = lazy(() => import("./pages/News/WrapperNews"));
+const EditNew = lazy(() => import("./pages/News/EditNew/EditNew"));
 const Events = lazy(() => import("./pages/Events"));
 
-type RouteT = { path: string; element: JSX.Element };
+type RouteT = { path: string; element: JSX.Element; isIndex?: boolean };
+type CustomRouteT = RouteT & { children?: RouteT[] };
 
-const routes: RouteT[] = [
+const routes: CustomRouteT[] = [
   {
     path: "news",
-    element: <News />,
+    element: <WrapperNews />,
+    children: [
+      {
+        path: "newsP",
+        element: <News />,
+        isIndex: true,
+      },
+      {
+        path: "edit",
+        element: <EditNew />,
+      },
+    ],
   },
   {
     path: "events",
@@ -41,19 +55,25 @@ const App = () => {
     <Suspense fallback={<Loader size={"large"} fullscreen={true} />}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />}>
-          {routes.map((route) => CustomRoute(route.path === "news", route))}
+          {routes.map((route) => CustomRoute(route))}
         </Route>
       </Routes>
     </Suspense>
   );
 };
 
-const CustomRoute = (isIndexPage: boolean, route: RouteT) => {
-  return isIndexPage ? (
-    <Route index element={route.element} key={route.path} path={route.path} />
-  ) : (
-    <Route path={route.path} element={route.element} key={route.path} />
-  );
-};
+const CustomRoute = (route: CustomRouteT) => (
+  <Route path={route.path} element={route.element} key={route.path}>
+    {route.children?.map((childRoute) => (
+      <>
+        {childRoute.isIndex ? (
+          <Route index element={childRoute.element} key={childRoute.path} />
+        ) : (
+          <Route {...childRoute} key={childRoute.path} />
+        )}
+      </>
+    ))}
+  </Route>
+);
 
 export default App;

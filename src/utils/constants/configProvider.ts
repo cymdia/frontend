@@ -12,6 +12,7 @@ export const theme: ThemeConfig = {
     // Alias Token
     colorBgContainer: style.whiteColor,
     colorBgLayout: style.primaryBackgroundColor,
+
     fontFamily: "Rubik",
   },
   components: {
