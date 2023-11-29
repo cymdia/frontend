@@ -12,7 +12,7 @@ import "./styles/_home.scss";
 
 type Props = {};
 
-export const Home = (props: Props) => {
+const Home = (props: Props) => {
   return (
     <div>
       <Header className="header">
@@ -28,3 +28,4 @@ export const Home = (props: Props) => {
     </div>
   );
 };
+export default Home;

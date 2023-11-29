@@ -1,15 +1,10 @@
+import { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import {
-  Events,
-  GenericNotFound,
-  Home,
-  News,
-  NotFound,
-  Redirect,
-} from "./pages";
+import { Events, GenericNotFound, News, NotFound, Redirect } from "./pages";
 
 import "./App.scss";
 
+const Home = lazy(() => import("./pages/Home"));
 type RouteT = { path: string; element: JSX.Element };
 
 const routes: RouteT[] = [
@@ -38,11 +33,13 @@ const routes: RouteT[] = [
 const App = () => {
   const location = useLocation();
   return (
-    <Routes location={location} key={location.pathname}>
-      <Route path="/" element={<Home />}>
-        {routes.map((route) => CustomRoute(route.path === "news", route))}
-      </Route>
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />}>
+          {routes.map((route) => CustomRoute(route.path === "news", route))}
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 
