@@ -1,10 +1,15 @@
 {
   "files": {
-    "main.css": "/frontend/static/css/main.e32e7042.css",
-    "main.js": "/frontend/static/js/main.9dae8c04.js",
+    "main.css": "/frontend/static/css/main.68620d41.css",
+    "main.js": "/frontend/static/js/main.ad2d1798.js",
     "static/css/271.bc09f080.chunk.css": "/frontend/static/css/271.bc09f080.chunk.css",
     "static/js/271.4fe25eef.chunk.js": "/frontend/static/js/271.4fe25eef.chunk.js",
+    "static/css/557.a6cf2d71.chunk.css": "/frontend/static/css/557.a6cf2d71.chunk.css",
+    "static/js/557.b081a384.chunk.js": "/frontend/static/js/557.b081a384.chunk.js",
+    "static/js/837.049328e0.chunk.js": "/frontend/static/js/837.049328e0.chunk.js",
     "static/js/787.9e9f4ffd.chunk.js": "/frontend/static/js/787.9e9f4ffd.chunk.js",
+    "static/js/395.6b810983.chunk.js": "/frontend/static/js/395.6b810983.chunk.js",
+    "static/js/170.e164c920.chunk.js": "/frontend/static/js/170.e164c920.chunk.js",
     "static/media/Rubik-Bold.ttf": "/frontend/static/media/Rubik-Bold.c934eb22c2c69992b34c.ttf",
     "static/media/Rubik-SemiBold.ttf": "/frontend/static/media/Rubik-SemiBold.869208702057daef053d.ttf",
     "static/media/Rubik-Medium.ttf": "/frontend/static/media/Rubik-Medium.0e121b4fa4d6e9bc5c69.ttf",
@@ -14,14 +19,19 @@
     "static/media/Montserrat-Medium.ttf": "/frontend/static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
     "static/media/Montserrat-Light.ttf": "/frontend/static/media/Montserrat-Light.7179b7d2ac9b599db5f9.ttf",
     "index.html": "/frontend/index.html",
-    "main.e32e7042.css.map": "/frontend/static/css/main.e32e7042.css.map",
-    "main.9dae8c04.js.map": "/frontend/static/js/main.9dae8c04.js.map",
+    "main.68620d41.css.map": "/frontend/static/css/main.68620d41.css.map",
+    "main.ad2d1798.js.map": "/frontend/static/js/main.ad2d1798.js.map",
     "271.bc09f080.chunk.css.map": "/frontend/static/css/271.bc09f080.chunk.css.map",
     "271.4fe25eef.chunk.js.map": "/frontend/static/js/271.4fe25eef.chunk.js.map",
-    "787.9e9f4ffd.chunk.js.map": "/frontend/static/js/787.9e9f4ffd.chunk.js.map"
+    "557.a6cf2d71.chunk.css.map": "/frontend/static/css/557.a6cf2d71.chunk.css.map",
+    "557.b081a384.chunk.js.map": "/frontend/static/js/557.b081a384.chunk.js.map",
+    "837.049328e0.chunk.js.map": "/frontend/static/js/837.049328e0.chunk.js.map",
+    "787.9e9f4ffd.chunk.js.map": "/frontend/static/js/787.9e9f4ffd.chunk.js.map",
+    "395.6b810983.chunk.js.map": "/frontend/static/js/395.6b810983.chunk.js.map",
+    "170.e164c920.chunk.js.map": "/frontend/static/js/170.e164c920.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e32e7042.css",
-    "static/js/main.9dae8c04.js"
+    "static/css/main.68620d41.css",
+    "static/js/main.ad2d1798.js"
   ]
 }

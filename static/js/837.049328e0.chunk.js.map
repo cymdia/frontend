@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/837.049328e0.chunk.js","mappings":"8IAEA,MAIA,EAJgBA,IACPC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,U","sources":["pages/Events.tsx"],"sourcesContent":["type Props = {};\n\nconst Events = (props: Props) => {\n  return <div>Events</div>;\n};\n\nexport default Events;\n"],"names":["props","_jsx","children"],"sourceRoot":""}
