@@ -3,35 +3,17 @@ import React, { useState } from "react";
 import { Form, Input, Layout, Popconfirm, Table, Typography } from "antd";
 import Title from "antd/es/typography/Title";
 
-import dayjs from "dayjs";
-
 import Actions from "../../components/Actions";
-import { constants } from "../../utils/constants";
+
 import { sortDate } from "../../utils/helpers";
 
 import "./styles/_news.scss";
+import { NewsItemType } from "../../types/newsItem";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { deleteNew } from "../../state/news/newsSlice";
 
 type Props = {};
-interface Item {
-  key: string;
-  name: string;
-
-  date: string;
-}
-
-const originData: Item[] = [];
-for (let i = 0; i < 100; i++) {
-  originData.push({
-    key: i.toString(),
-    name: `Новина ${i}`,
-    date:
-      i % 2 === 0
-        ? dayjs(new Date()).format(constants.dateFormat).toString()
-        : dayjs(new Date(new Date().setDate(21)))
-            .format(constants.dateFormat)
-            .toString(),
-  });
-}
 
 //  type: i % 2 === 0 ? "Семінар" : " Тренінг",
 //     orientation: i % 2 === 0 ? "Виховники" : "Міжнародники",
@@ -42,7 +24,7 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   dataIndex: string;
   title: any;
   inputType: "date" | "text";
-  record: Item;
+  record: NewsItemType;
   index: number;
   children: React.ReactNode;
 }
@@ -83,12 +65,14 @@ const EditableCell: React.FC<EditableCellProps> = ({
 
 const News = (props: Props) => {
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
   const [editingKey, setEditingKey] = useState("");
+  const data = useSelector((state: RootState) => state.news);
 
-  const isEditing = (record: Item) => record.key === editingKey;
+  const dispatch = useDispatch();
 
-  const edit = (record: Partial<Item> & { key: React.Key }) => {
+  const isEditing = (record: NewsItemType) => record.id === editingKey;
+
+  const edit = (record: Partial<NewsItemType>) => {
     form.setFieldsValue({
       name: "",
 
@@ -96,30 +80,30 @@ const News = (props: Props) => {
 
       ...record,
     });
-    setEditingKey(record.key);
+    setEditingKey(record.id as string);
   };
 
   const cancel = () => {
     setEditingKey("");
   };
 
-  const save = async (key: React.Key) => {
+  const save = async (id: string) => {
     try {
-      const row = (await form.validateFields()) as Item;
+      const row = (await form.validateFields()) as NewsItemType;
 
       const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
+      const index = newData.findIndex((item) => id === item.id);
       if (index > -1) {
         const item = newData[index];
         newData.splice(index, 1, {
           ...item,
           ...row,
         });
-        setData(newData);
+        // setData(newData);
         setEditingKey("");
       } else {
         newData.push(row);
-        setData(newData);
+        // setData(newData);
         setEditingKey("");
       }
     } catch (errInfo) {
@@ -127,11 +111,12 @@ const News = (props: Props) => {
     }
   };
 
-  const deleteNew = (record: Partial<Item>) => {
-    const newData = [...data];
-    const index = data.findIndex((item) => record.key === item.key);
-    newData.splice(index, 1);
-    setData(newData);
+  const deleteItem = (record: NewsItemType) => {
+    dispatch(deleteNew(record));
+    // const newData: NewsItemType[] = [...data];
+    // const index = data.findIndex((item) => record.id === item.id);
+    // newData.splice(index, 1);
+    // setData(newData);
   };
 
   const columns = [
@@ -146,19 +131,19 @@ const News = (props: Props) => {
       dataIndex: "date",
       width: "20%",
       editable: false,
-      sorter: (a: Item, b: Item) => sortDate(a.date, b.date),
+      sorter: (a: NewsItemType, b: NewsItemType) => sortDate(a.date, b.date),
     },
     {
       title: "Дії",
       dataIndex: "operation",
-      render: (_: any, record: Item) => {
+      render: (_: any, record: NewsItemType) => {
         const editable = isEditing(record);
         return (
           <>
             {editable ? (
               <span>
                 <Typography.Link
-                  onClick={() => save(record.key)}
+                  onClick={() => save(record.id)}
                   style={{ marginRight: 8 }}
                 >
                   Зберегти
@@ -183,7 +168,7 @@ const News = (props: Props) => {
             )}
             <Typography.Link
               disabled={editingKey !== ""}
-              onClick={() => deleteNew(record)}
+              onClick={() => deleteItem(record)}
               className="delete-btn"
             >
               Видалити
@@ -200,7 +185,7 @@ const News = (props: Props) => {
     }
     return {
       ...col,
-      onCell: (record: Item) => ({
+      onCell: (record: NewsItemType) => ({
         record,
         inputType: col.dataIndex === "date" ? "date" : "text",
         dataIndex: col.dataIndex,
@@ -213,7 +198,7 @@ const News = (props: Props) => {
   return (
     <Layout className="news-layout layout">
       <Title>Новини</Title>
-      <Actions />
+      <Actions buttonName="+ Додати новину" />
 
       <Form form={form} component={false}>
         <Table

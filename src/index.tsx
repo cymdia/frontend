@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ConfigProvider } from "antd";
+
+import { Provider } from "react-redux";
+import { store } from "./state/store";
+
+import App from "./App";
 
 import { theme } from "./utils/constants";
 
@@ -16,9 +20,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ConfigProvider theme={theme}>
-      <Router basename="/frontend">
-        <App />
-      </Router>
+      <Provider store={store}>
+        <Router basename="/frontend">
+          <App />
+        </Router>
+      </Provider>
     </ConfigProvider>
   </React.StrictMode>,
 );

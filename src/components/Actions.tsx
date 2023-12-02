@@ -3,9 +3,11 @@ import { Button, Flex } from "antd";
 import "../styles/components/_actions.scss";
 import { useNavigate } from "react-router-dom";
 
-type Props = {};
+type Props = {
+  buttonName: string;
+};
 
-const Actions = (props: Props) => {
+const Actions = ({ buttonName }: Props) => {
   const navigate = useNavigate();
   const onCreateNew = () => {
     navigate("edit");
@@ -19,7 +21,7 @@ const Actions = (props: Props) => {
           size="large"
           onClick={onCreateNew}
         >
-          + Додати новину
+          {buttonName}
         </Button>
       </Flex>
     </>
