@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/786.892f6ee5.chunk.js","mappings":"8IAEA,MAIA,EAJiBA,IACRC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,a","sources":["pages/News/EditNew/EditNew.tsx"],"sourcesContent":["type Props = {};\n\nconst EditNew = (props: Props) => {\n  return <div>Creat New</div>;\n};\n\nexport default EditNew;\n"],"names":["props","_jsx","children"],"sourceRoot":""}
