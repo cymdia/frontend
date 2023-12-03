@@ -7,6 +7,7 @@ interface NewsState {
   name: string;
   date: string;
   id: string;
+  description: string;
 }
 
 const initialState: NewsState[] = getOriginData();

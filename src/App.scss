@@ -1,3 +1,13 @@
+@import "/src/styles/utils/variables.module";
+
 .layout {
   height: calc(100vh - 64px);
+}
+
+.button-accent {
+  background-color: $accent-color;
+  transition: 0.1s background-color;
+  &:hover {
+    background-color: $accent-white-color !important;
+  }
 }

@@ -14,6 +14,7 @@ export const theme: ThemeConfig = {
     colorBgLayout: style.primaryBackgroundColor,
 
     fontFamily: "Rubik",
+    colorPrimaryBgHover: style.accentWhiteColor,
   },
   components: {
     Menu: {
@@ -31,7 +32,11 @@ export const theme: ThemeConfig = {
     },
     Table: {
       bodySortBg: style.whiteColor,
-      colorText: style.dartkGreyColor,
+      colorText: style.greyDarkColor,
+    },
+    Button: {
+      colorPrimaryBgHover: style.accentWhiteColor,
+      colorPrimaryBg: style.accentColor,
     },
   },
 };

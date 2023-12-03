@@ -1,7 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import { Button, Flex } from "antd";
 
 import "../styles/components/_actions.scss";
-import { useNavigate } from "react-router-dom";
 
 type Props = {
   buttonName: string;

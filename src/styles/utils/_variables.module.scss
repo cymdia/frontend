@@ -1,10 +1,13 @@
 $primary-color: #1c4792;
 $accent-color: #39b54a;
+$accent-white-color: #39b54a6b;
 $white-color: #ffffff;
 $blue-dark-color: #0c2749;
-$dartk-grey-color: #6e7074;
+$grey-dark-color: #6e7074;
 $red-color: #ff2020;
 $red-white-color: #ff9898;
+$dark-color: #263238;
+$light-dark-color: #2632380f;
 
 $primary-background-color: #f0f0f0;
 
@@ -14,10 +17,14 @@ $secondary-font-family: "Montserrat", sans-serif;
 :export {
   primaryColor: $primary-color;
   accentColor: $accent-color;
+  accentWhiteColor: $accent-white-color;
   whiteColor: $white-color;
   blueDarkColor: $blue-dark-color;
-  dartkGreyColor: $dartk-grey-color;
+  greyDarkColor: $grey-dark-color;
   redColor: $red-color;
+  redWhiteColor: $red-white-color;
+  darkColor: $light-dark-color;
+  lightDarkColor: $light-dark-color;
   primaryBackgroundColor: $primary-background-color;
   fontFamily: $font-family;
   secondaryFontFamily: $secondary-font-family;

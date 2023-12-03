@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 
 import { Form, Input, Layout, Popconfirm, Table, Typography } from "antd";
-import Title from "antd/es/typography/Title";
+import { useDispatch, useSelector } from "react-redux";
 
+import Title from "antd/es/typography/Title";
 import Actions from "../../components/Actions";
 
 import { sortDate } from "../../utils/helpers";
 
-import "./styles/_news.scss";
 import { NewsItemType } from "../../types/newsItem";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { deleteNew } from "../../state/news/newsSlice";
+
+import "./styles/_news.scss";
 
 type Props = {};
 
