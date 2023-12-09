@@ -1,7 +1,7 @@
 import { Button, Flex, Form, Input, Layout } from "antd";
 import Title from "antd/es/typography/Title";
 import { useDispatch } from "react-redux";
-import { addNew } from "state/news/newsSlice";
+import { addNew } from "state/news/newsOperations";
 
 import { NewsItemType } from "types/newsItem";
 
@@ -10,6 +10,7 @@ import { constants } from "utils/constants";
 import "styles/components/_editNew.scss";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+import { AppDispatch } from "state/store";
 
 type Props = {};
 
@@ -42,7 +43,7 @@ const editNewFormItems: EditNewFormItemType[] = [
 
 const EditNew = (props: Props) => {
   const [form] = Form.useForm();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const onCancel = () => {
@@ -55,7 +56,6 @@ const EditNew = (props: Props) => {
 
       const data: NewsItemType = {
         date: dayjs(new Date()).format(constants.dateFormat).toString(),
-        id: generateUniqueId(),
         ...newItem,
       };
       dispatch(addNew(data));
@@ -117,7 +117,3 @@ const EditNew = (props: Props) => {
 };
 
 export default EditNew;
-
-function generateUniqueId() {
-  return "id-" + Math.random().toString(36).substr(2, 16);
-}

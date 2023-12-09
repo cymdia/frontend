@@ -22,8 +22,13 @@
 
   & .ant-table-wrapper {
     height: calc(100% - 137px);
+    position: relative;
     & .ant-spin-nested-loading {
       height: 100%;
+
+      & div > .ant-spin {
+        min-height: 100%;
+      }
 
       & .ant-spin-container {
         height: 100%;

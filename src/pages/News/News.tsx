@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Form, Input, Layout, Popconfirm, Table, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +9,9 @@ import Actions from "../../components/Actions";
 import { sortDate } from "../../utils/helpers";
 
 import { NewsItemType } from "../../types/newsItem";
-import { RootState } from "../../state/store";
-import { deleteNew } from "../../state/news/newsSlice";
+import { AppDispatch, RootState } from "../../state/store";
+import { setUpdate } from "../../state/news/newsSlice";
+import { deleteNew, editNew, fetchNews } from "state/news/newsOperations";
 
 import "./styles/_news.scss";
 
@@ -69,16 +70,24 @@ const News = (props: Props) => {
   const [editingKey, setEditingKey] = useState("");
   const data = useSelector((state: RootState) => state.news);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (data.needUpdate) {
+      dispatch(fetchNews());
+    } else {
+      dispatch(setUpdate(true));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isEditing = (record: NewsItemType) => record.id === editingKey;
 
   const edit = (record: Partial<NewsItemType>) => {
     form.setFieldsValue({
       name: "",
-
+      description: "",
       date: "",
-
       ...record,
     });
     setEditingKey(record.id as string);
@@ -91,40 +100,29 @@ const News = (props: Props) => {
   const save = async (id: string) => {
     try {
       const row = (await form.validateFields()) as NewsItemType;
-
-      const newData = [...data];
-      const index = newData.findIndex((item) => id === item.id);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        // setData(newData);
-        setEditingKey("");
-      } else {
-        newData.push(row);
-        // setData(newData);
-        setEditingKey("");
-      }
+      const item = data.items.find((item) => item.id === id);
+      dispatch(editNew({ ...item, ...row, id }));
+      setEditingKey("");
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
     }
   };
 
   const deleteItem = (record: NewsItemType) => {
-    dispatch(deleteNew(record));
-    // const newData: NewsItemType[] = [...data];
-    // const index = data.findIndex((item) => record.id === item.id);
-    // newData.splice(index, 1);
-    // setData(newData);
+    dispatch(deleteNew(record.id));
   };
 
   const columns = [
     {
       title: "Новина",
       dataIndex: "name",
-      width: "45%",
+      width: "25%",
+      editable: true,
+    },
+    {
+      title: "Опис",
+      dataIndex: "description",
+      width: "35%",
       editable: true,
     },
     {
@@ -209,13 +207,14 @@ const News = (props: Props) => {
             },
           }}
           bordered
-          dataSource={data}
+          dataSource={data.items}
           columns={mergedColumns}
           rowClassName="editable-row"
           pagination={{
             onChange: cancel,
           }}
           sticky={true}
+          loading={data.isLoading}
         />
       </Form>
     </Layout>

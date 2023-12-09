@@ -1,48 +1,58 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { getOriginData } from "./newsData";
+
 import { NewsItemType } from "../../types/newsItem";
-// import data from newsData
+import { addNew, deleteNew, editNew, fetchNews } from "./newsOperations";
+import { handleAddItemPending, handlePending } from "state/utils/handlePending";
+import {
+  handleAddItemFulfilled,
+  handleDeleteItemFulfilled,
+  handleEditItemFulfilled,
+  handleFetchItemsFulfilled,
+} from "state/utils/handleFulfilled";
+import { handleRejected } from "state/utils/handleRejected";
 
 interface NewsState {
-  name: string;
-  date: string;
-  id: string;
-  description: string;
+  isLoading: boolean;
+  error: any;
+  items: NewsItemType[];
+  needUpdate: boolean;
 }
 
-const initialState: NewsState[] = getOriginData();
+const initialState: NewsState = {
+  isLoading: false,
+  error: null,
+  items: [],
+  needUpdate: true,
+};
 
 const newsSlice = createSlice({
   name: "news",
   initialState,
+  extraReducers(builder) {
+    builder
+      .addCase(fetchNews.pending, handlePending)
+      .addCase(fetchNews.fulfilled, handleFetchItemsFulfilled)
+      .addCase(fetchNews.rejected, handleRejected);
+    builder
+      .addCase(addNew.pending, handleAddItemPending)
+      .addCase(addNew.fulfilled, handleAddItemFulfilled)
+      .addCase(addNew.rejected, handleRejected);
+    builder
+      .addCase(deleteNew.pending, handlePending)
+      .addCase(deleteNew.fulfilled, handleDeleteItemFulfilled)
+      .addCase(deleteNew.rejected, handleRejected);
+    builder
+      .addCase(editNew.pending, handlePending)
+      .addCase(editNew.fulfilled, handleEditItemFulfilled)
+      .addCase(editNew.rejected, handleRejected);
+  },
   reducers: {
-    addNew: (state, action: PayloadAction<NewsItemType>) => {
-      state.push(action.payload);
-    },
-    deleteNew: (state, action: PayloadAction<NewsItemType>) => {
-      const index = state.findIndex((item) => action.payload.id === item.id);
-      state.splice(index, 1);
-      state = [...state];
-    },
-    editNew: (state, action: PayloadAction<NewsItemType>) => {
-      const news = action.payload;
-
-      const newData = [...state];
-      const index = newData.findIndex((item) => news.id === item.id);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...news,
-        });
-        state = [...newData];
-      }
-
-      //TODO: CHECKIT
+    setUpdate: (state, action: PayloadAction<boolean>) => {
+      state.needUpdate = action.payload;
     },
   },
 });
 
-export const { addNew, deleteNew, editNew } = newsSlice.actions;
+export const { setUpdate } = newsSlice.actions;
 
 export default newsSlice.reducer;
