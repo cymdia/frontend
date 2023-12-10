@@ -5,8 +5,8 @@ import { Avatar, Flex } from "antd";
 
 import { UserOutlined } from "@ant-design/icons";
 
-import { Logo } from "../components/Logo";
-import NavBar from "../components/NavBar";
+import { Logo } from "../../components/Logo";
+import NavBar from "../../components/NavBar";
 
 import "./styles/_home.scss";
 

@@ -1,18 +1,18 @@
 @import "/src/styles/utils/variables.module";
 
-.edit-new-wrapper {
+.edit-wrapper {
   height: 100%;
 
-  & .edit-new-title {
+  & .edit-title {
     margin-bottom: 40px;
   }
 
-  & .edit-new-form {
+  & .edit-form {
     max-width: 500px;
     width: 100%;
   }
 
-  & .edit-new-form-field {
+  & .edit-form-field {
     background-color: $light-dark-color;
     border: none;
     border-top-left-radius: 5px;
@@ -23,11 +23,11 @@
     width: 100%;
   }
 
-  & .edit-new-form-textarea {
+  & .edit-form-textarea {
     resize: none;
   }
 
-  & .edit-new-form-button {
+  & .edit-form-button {
     padding: 18px 10px;
     border-radius: 3px;
     font-size: 16px;

@@ -3,9 +3,10 @@ import Title from "antd/es/typography/Title";
 import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "state/store";
 
+import { AppDispatch } from "state/store";
 import { addNew } from "state/news/newsOperations";
+
 import { NewsItemType } from "types/newsItem";
 import { constants } from "utils/constants";
 
@@ -13,7 +14,7 @@ import "styles/components/_editPage.scss";
 
 type Props = {};
 
-type EditNewFormItemType = {
+type EditEventFormItemType = {
   name: string;
   required: boolean;
   message: string;
@@ -22,12 +23,12 @@ type EditNewFormItemType = {
   className?: string;
 };
 
-const editNewFormItems: EditNewFormItemType[] = [
+const editEventFormItems: EditEventFormItemType[] = [
   {
     name: "name",
     required: true,
     message: "Введіть назву",
-    placeholder: "Назва новини",
+    placeholder: "Назва події",
     inputType: "text",
   },
   {
@@ -35,12 +36,12 @@ const editNewFormItems: EditNewFormItemType[] = [
     required: true,
     message: "Введіть опис",
     placeholder: "Що у вас на думці?",
-    className: "edit-form-textarea",
+    className: "edit-new-form-textarea",
     inputType: "textarea",
   },
 ];
 
-const EditNew = (props: Props) => {
+const EditEvent = (props: Props) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -71,9 +72,9 @@ const EditNew = (props: Props) => {
         gap="large"
         className="edit-wrapper"
       >
-        <Title className="edit-title">Додати Новину</Title>
+        <Title className="edit-title">Додати Подію</Title>
         <Form form={form} className="edit-form" onFinish={onSubmit}>
-          {editNewFormItems.map((item) => (
+          {editEventFormItems.map((item) => (
             <Form.Item
               name={item.name}
               rules={[{ required: item.required, message: item.message }]}
@@ -115,4 +116,4 @@ const EditNew = (props: Props) => {
   );
 };
 
-export default EditNew;
+export default EditEvent;

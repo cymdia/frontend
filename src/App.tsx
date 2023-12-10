@@ -6,11 +6,13 @@ import Loader from "./components/Loader";
 
 import "./App.scss";
 
-const Home = lazy(() => import("./pages/Home"));
+const Home = lazy(() => import("./pages/Home/Home"));
 const News = lazy(() => import("./pages/News/News"));
 const WrapperNews = lazy(() => import("./pages/News/WrapperNews"));
 const EditNew = lazy(() => import("./pages/News/EditNew/EditNew"));
-const Events = lazy(() => import("./pages/Events"));
+const Events = lazy(() => import("./pages/Events/Events"));
+const WrapperEvents = lazy(() => import("./pages/Events/WrapperNews"));
+const EditEvent = lazy(() => import("./pages/Events/EditEvent/EditEvent"));
 
 type RouteT = { path: string; element: JSX.Element; isIndex?: boolean };
 type CustomRouteT = RouteT & { children?: RouteT[] };
@@ -33,8 +35,20 @@ const routes: CustomRouteT[] = [
   },
   {
     path: "events",
-    element: <Events />,
+    element: <WrapperEvents />,
+    children: [
+      {
+        path: "eventsP",
+        element: <Events />,
+        isIndex: true,
+      },
+      {
+        path: "edit",
+        element: <EditEvent />,
+      },
+    ],
   },
+
   {
     path: "404",
     element: <NotFound />,
