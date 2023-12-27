@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/frontend/static/css/main.c5dfdb20.css",
-    "main.js": "/frontend/static/js/main.a367f1e6.js",
+    "main.js": "/frontend/static/js/main.08dccf89.js",
     "static/css/741.03101549.chunk.css": "/frontend/static/css/741.03101549.chunk.css",
     "static/js/741.3a860787.chunk.js": "/frontend/static/js/741.3a860787.chunk.js",
     "static/css/297.13b45db7.chunk.css": "/frontend/static/css/297.13b45db7.chunk.css",
@@ -13,7 +13,7 @@
     "static/js/911.77b26f6b.chunk.js": "/frontend/static/js/911.77b26f6b.chunk.js",
     "static/js/506.ec021973.chunk.js": "/frontend/static/js/506.ec021973.chunk.js",
     "static/css/124.e03df8f8.chunk.css": "/frontend/static/css/124.e03df8f8.chunk.css",
-    "static/js/124.ed8e93fc.chunk.js": "/frontend/static/js/124.ed8e93fc.chunk.js",
+    "static/js/124.8ea34ccb.chunk.js": "/frontend/static/js/124.8ea34ccb.chunk.js",
     "static/js/787.9e9f4ffd.chunk.js": "/frontend/static/js/787.9e9f4ffd.chunk.js",
     "static/js/78.30918099.chunk.js": "/frontend/static/js/78.30918099.chunk.js",
     "static/js/326.1aa485a2.chunk.js": "/frontend/static/js/326.1aa485a2.chunk.js",
@@ -32,7 +32,7 @@
     "static/media/Montserrat-Light.ttf": "/frontend/static/media/Montserrat-Light.7179b7d2ac9b599db5f9.ttf",
     "index.html": "/frontend/index.html",
     "main.c5dfdb20.css.map": "/frontend/static/css/main.c5dfdb20.css.map",
-    "main.a367f1e6.js.map": "/frontend/static/js/main.a367f1e6.js.map",
+    "main.08dccf89.js.map": "/frontend/static/js/main.08dccf89.js.map",
     "741.03101549.chunk.css.map": "/frontend/static/css/741.03101549.chunk.css.map",
     "741.3a860787.chunk.js.map": "/frontend/static/js/741.3a860787.chunk.js.map",
     "297.13b45db7.chunk.css.map": "/frontend/static/css/297.13b45db7.chunk.css.map",
@@ -44,7 +44,7 @@
     "911.77b26f6b.chunk.js.map": "/frontend/static/js/911.77b26f6b.chunk.js.map",
     "506.ec021973.chunk.js.map": "/frontend/static/js/506.ec021973.chunk.js.map",
     "124.e03df8f8.chunk.css.map": "/frontend/static/css/124.e03df8f8.chunk.css.map",
-    "124.ed8e93fc.chunk.js.map": "/frontend/static/js/124.ed8e93fc.chunk.js.map",
+    "124.8ea34ccb.chunk.js.map": "/frontend/static/js/124.8ea34ccb.chunk.js.map",
     "787.9e9f4ffd.chunk.js.map": "/frontend/static/js/787.9e9f4ffd.chunk.js.map",
     "78.30918099.chunk.js.map": "/frontend/static/js/78.30918099.chunk.js.map",
     "326.1aa485a2.chunk.js.map": "/frontend/static/js/326.1aa485a2.chunk.js.map",
@@ -56,6 +56,6 @@
   },
   "entrypoints": [
     "static/css/main.c5dfdb20.css",
-    "static/js/main.a367f1e6.js"
+    "static/js/main.08dccf89.js"
   ]
 }
