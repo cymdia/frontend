@@ -73,10 +73,11 @@ const EditNew = (props: Props) => {
       >
         <Title className="edit-title">Додати Новину</Title>
         <Form form={form} className="edit-form" onFinish={onSubmit}>
-          {editNewFormItems.map((item) => (
+          {editNewFormItems.map((item, i) => (
             <Form.Item
               name={item.name}
               rules={[{ required: item.required, message: item.message }]}
+              key={i}
             >
               {item.inputType === "text" ? (
                 <Input

@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ConfigProvider } from "antd";
+import ukUA from "antd/lib/locale/uk_UA";
+import "dayjs/locale/uk";
 
 import { Provider } from "react-redux";
 import { store } from "./state/store";
@@ -19,7 +21,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={theme} locale={ukUA}>
       <Provider store={store}>
         <Router basename="/frontend">
           <App />

@@ -1,5 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 
 import { GenericNotFound, NotFound, Redirect } from "./pages";
 import Loader from "./components/Loader";
@@ -65,6 +67,8 @@ const routes: CustomRouteT[] = [
 
 const App = () => {
   const location = useLocation();
+  dayjs.extend(localizedFormat);
+  dayjs.locale("uk");
   return (
     <Suspense fallback={<Loader size={"large"} fullscreen={true} />}>
       <Routes location={location} key={location.pathname}>

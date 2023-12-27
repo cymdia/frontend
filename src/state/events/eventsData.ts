@@ -5,7 +5,7 @@ import { EventsItemType } from "../../types/eventsItem";
 
 export const getOriginData = () => {
   const originData: EventsItemType[] = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 1; i++) {
     originData.push({
       id: i.toString(),
       name: `Подія ${i}`,
