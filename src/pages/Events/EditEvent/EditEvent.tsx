@@ -115,10 +115,8 @@ const EditEvent = (props: Props) => {
   };
 
   const onSubmit = async () => {
-    console.log(form);
     if (form !== undefined) {
       const newItem = (await form.validateFields()) as AddEventType;
-      console.log(newItem);
 
       const data: AddEventType = {
         ...newItem,
@@ -158,23 +156,6 @@ const EditEvent = (props: Props) => {
                   placeholder={item.placeholder}
                 />
               ) : (
-                // : item.inputType === "date" ? (
-                //   <DatePicker
-                //     picker={item.picker}
-                //     disabledDate={disabledDate}
-                //     placeholder={item.placeholder}
-                //   />
-                // ) : item.inputType === "rangePicker" ? (
-                //   <DatePicker.RangePicker
-                //     picker={item.picker}
-                //     disabledDate={disabledDate}
-                //     placeholder={item.rangePlaceholder}
-                //     showTime={{
-                //       hideDisabledOptions: true,
-                //     }}
-                //     format={dateFormat}
-                //   />
-                // )
                 <Input
                   placeholder={item.placeholder}
                   className="edit-form-field"
