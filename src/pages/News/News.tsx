@@ -122,7 +122,7 @@ const News = (props: Props) => {
         <Table
           components={{
             body: {
-              cell: EditableCell,
+              cell: EditableCell<NewsItemType>,
             },
           }}
           bordered

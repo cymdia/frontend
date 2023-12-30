@@ -3,11 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Form, Layout, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Title from "antd/es/typography/Title";
+import dayjs from "dayjs";
 
-import { sortDate } from "../../utils/helpers";
-import { EventsItemType } from "../../types/eventsItem";
-import { AppDispatch, RootState } from "../../state/store";
-import { setUpdate } from "../../state/news/newsSlice";
+import { sortDate } from "utils/helpers";
+import { dateFormat } from "utils/constants/constants";
+import { EventsItemType } from "types/eventsItem";
+import { InputType } from "types/editInput";
+import { AppDispatch, RootState } from "state/store";
+import { setUpdate } from "state/news/newsSlice";
 import {
   deleteEvent,
   editEvent,
@@ -41,17 +44,18 @@ const Events = (props: Props) => {
   const isEditing = (record: EventsItemType) => record.id === editingKey;
 
   const edit = (record: Partial<EventsItemType>) => {
-    form.setFieldsValue({
+    const newF = {
       name: "",
-      startDate: "",
-      endDate: "",
       type: "",
       orientation: "",
       ageRestrictions: "",
       venue: "",
       financialFeatures: "",
       ...record,
-    });
+      startDate: record.startDate ? parsedDate(record.startDate) : null,
+      endDate: record.endDate ? parsedDate(record.endDate) : null,
+    };
+    form.setFieldsValue(newF);
     setEditingKey(record.id as string);
   };
 
@@ -115,17 +119,17 @@ const Events = (props: Props) => {
       title: "Дата початку",
       dataIndex: "startDate",
       width: "10%",
-      editable: false,
+      editable: true,
       sorter: (a: EventsItemType, b: EventsItemType) =>
-        sortDate(a.startDate, b.startDate),
+        sortDate(a.startDate ?? "", b.startDate ?? ""),
     },
     {
       title: "Дата кінця",
       dataIndex: "endDate",
       width: "10%",
-      editable: false,
+      editable: true,
       sorter: (a: EventsItemType, b: EventsItemType) =>
-        sortDate(a.endDate, b.endDate),
+        sortDate(a.endDate ?? "", b.endDate ?? ""),
     },
     columnOperation<EventsItemType>({
       editingKey,
@@ -147,7 +151,7 @@ const Events = (props: Props) => {
       ...col,
       onCell: (record: EventsItemType) => ({
         record,
-        inputType: col.dataIndex === "date" ? "date" : "text",
+        inputType: getInputTypeByName(col.dataIndex),
         dataIndex: col.dataIndex,
         title: col.title,
         editing: isEditing(record),
@@ -164,7 +168,7 @@ const Events = (props: Props) => {
         <Table
           components={{
             body: {
-              cell: EditableCell,
+              cell: EditableCell<EventsItemType>,
             },
           }}
           bordered
@@ -184,26 +188,6 @@ const Events = (props: Props) => {
 
 export default Events;
 
-//  type: i % 2 === 0 ? "Семінар" : " Тренінг",
-//     orientation: i % 2 === 0 ? "Виховники" : "Міжнародники",
-//     ageRestrictions: i % 2 === 0 ? "Суменята" : "Дружинники",
-
-// const range = (start: number, end: number) => {
-//   const result = [];
-//   for (let i = start; i < end; i++) {
-//     result.push(i);
-//   }
-//   return result;
-// };
-// const disabledDate: RangePickerProps["disabledDate"] = (current) => {
-//   return current && current < dayjs().endOf("day");
-// };
-
-// const disabledDateTime = () => ({
-//   disabledHours: () => range(0, 24).splice(4, 20),
-//   disabledMinutes: () => range(30, 60),
-// });
-
 // •  Дата  - спочатку вибираєм місяць, тому що можуть не знати конкретний день, пізніше можна змінити дату початку події з числа по число ( 01.02.2023 - 02.02.2023)
 // •  Тип (семінар, тренінг, табір)  -  список
 // •  Назва  -  текст
@@ -211,3 +195,29 @@ export default Events;
 // •  Вікові обмеження (суменята, молодше юнацтво, старше юнацтво, дружинники)  -  список
 // •  Місце проведення (область, місто, адреса, назва бази)   -  текст
 // •  Фінансові особливості  -  текст
+
+const getInputTypeByName = (name: string): InputType => {
+  switch (name) {
+    case "startDate":
+    case "endDate":
+      return "date";
+    case "ageRestrictions":
+    case "orientation":
+    case "type":
+      return "dropdownlist";
+    default:
+      return "text";
+  }
+};
+
+const parsedDate = (date?: string) => {
+  if (!date) {
+    return dayjs();
+  }
+  const parts = date.split(" ");
+  const dateParts = parts[0].split("-");
+  const timeParts = parts[1].split(":");
+  const isoString = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}T${timeParts[0]}:${timeParts[1]}:00.000`;
+
+  return dayjs(new Date(isoString));
+};

@@ -66,7 +66,17 @@ export const editEvent = createAsyncThunk(
   async (data: EventsItemType, { rejectWithValue }) => {
     try {
       await delay();
-      return data;
+      return {
+        ...data,
+        startDate: dayjs(data.startDate).format(constants.dateFormat),
+        endDate: dayjs(data.endDate).format(constants.dateFormat),
+        ageRestrictions: getItemName(
+          ageRestrictionsItems,
+          data.ageRestrictions,
+        ),
+        orientation: getItemName(orientationItems, data.orientation),
+        type: getItemName(typeItems, data.type),
+      };
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -88,4 +98,4 @@ const getEndDate = (date?: [Dayjs, Dayjs]): string =>
   date !== undefined ? dayjs(date[1]).format(constants.dateFormat) : "Невідомо";
 
 const getItemName = (items: SelectProps["options"], id: string) =>
-  items?.find((item) => item.value === id)?.label;
+  !isNaN(parseInt(id)) ? items?.find((item) => item.value === id)?.label : id;
