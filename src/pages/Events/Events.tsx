@@ -3,12 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Form, Layout, Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Title from "antd/es/typography/Title";
-import dayjs from "dayjs";
 
-import { sortDate } from "utils/helpers";
-import { dateFormat } from "utils/constants/constants";
+import { getInputTypeByName, parsedDateToEdit, sortDate } from "utils/helpers";
 import { EventsItemType } from "types/eventsItem";
-import { InputType } from "types/editInput";
+
 import { AppDispatch, RootState } from "state/store";
 import { setUpdate } from "state/news/newsSlice";
 import {
@@ -52,8 +50,8 @@ const Events = (props: Props) => {
       venue: "",
       financialFeatures: "",
       ...record,
-      startDate: record.startDate ? parsedDate(record.startDate) : null,
-      endDate: record.endDate ? parsedDate(record.endDate) : null,
+      startDate: record.startDate ? parsedDateToEdit(record.startDate) : null,
+      endDate: record.endDate ? parsedDateToEdit(record.endDate) : null,
     };
     form.setFieldsValue(newF);
     setEditingKey(record.id as string);
@@ -187,37 +185,3 @@ const Events = (props: Props) => {
 };
 
 export default Events;
-
-// •  Дата  - спочатку вибираєм місяць, тому що можуть не знати конкретний день, пізніше можна змінити дату початку події з числа по число ( 01.02.2023 - 02.02.2023)
-// •  Тип (семінар, тренінг, табір)  -  список
-// •  Назва  -  текст
-// •  Орієнтація (виховники, культутрники, ратники, міжнародники, суспільники)  -  список
-// •  Вікові обмеження (суменята, молодше юнацтво, старше юнацтво, дружинники)  -  список
-// •  Місце проведення (область, місто, адреса, назва бази)   -  текст
-// •  Фінансові особливості  -  текст
-
-const getInputTypeByName = (name: string): InputType => {
-  switch (name) {
-    case "startDate":
-    case "endDate":
-      return "date";
-    case "ageRestrictions":
-    case "orientation":
-    case "type":
-      return "dropdownlist";
-    default:
-      return "text";
-  }
-};
-
-const parsedDate = (date?: string) => {
-  if (!date) {
-    return dayjs();
-  }
-  const parts = date.split(" ");
-  const dateParts = parts[0].split("-");
-  const timeParts = parts[1].split(":");
-  const isoString = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}T${timeParts[0]}:${timeParts[1]}:00.000`;
-
-  return dayjs(new Date(isoString));
-};
