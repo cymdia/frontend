@@ -4,7 +4,8 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
 import { GenericNotFound, NotFound, Redirect } from "./pages";
-import Loader from "./components/Loader";
+import PrivateRoute from "components/PrivateRoute";
+import Loader from "components/Loader";
 
 import "./App.scss";
 
@@ -15,6 +16,7 @@ const EditNew = lazy(() => import("./pages/News/EditNew/EditNew"));
 const Events = lazy(() => import("./pages/Events/Events"));
 const WrapperEvents = lazy(() => import("./pages/Events/WrapperNews"));
 const EditEvent = lazy(() => import("./pages/Events/EditEvent/EditEvent"));
+const Login = lazy(() => import("pages/Login/Login"));
 
 type RouteT = { path: string; element: JSX.Element; isIndex?: boolean };
 type CustomRouteT = RouteT & { children?: RouteT[] };
@@ -72,7 +74,16 @@ const App = () => {
   return (
     <Suspense fallback={<Loader size={"large"} fullscreen={true} />}>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Home />}>
+        <Route path="/login" element={<Login />}></Route>
+
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        >
           {routes.map((route) => CustomRoute(route))}
         </Route>
       </Routes>

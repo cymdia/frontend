@@ -7,22 +7,14 @@ import { AppDispatch } from "state/store";
 
 import { addNew } from "state/news/newsOperations";
 import { NewsItemType } from "types/newsItem";
+import { FormItemsType } from "types/formItems";
 import { constants } from "utils/constants";
 
 import "styles/components/_editPage.scss";
 
 type Props = {};
 
-type EditNewFormItemType = {
-  name: string;
-  required: boolean;
-  message: string;
-  placeholder: string;
-  inputType: "text" | "textarea";
-  className?: string;
-};
-
-const editNewFormItems: EditNewFormItemType[] = [
+const editNewFormItems: FormItemsType[] = [
   {
     name: "name",
     required: true,
