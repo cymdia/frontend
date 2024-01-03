@@ -2,14 +2,14 @@ import React from "react";
 
 import EditLayout from "components/EditLayout";
 
-import "./styles/_login.scss";
-import "styles/components/_editPage.scss";
 import { FormItemsType } from "types/formItems";
 import { Button, Flex, Form, Input } from "antd";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "state/store";
 import { useNavigate } from "react-router-dom";
-import Title from "antd/es/typography/Title";
+
+import "./styles/_login.scss";
+import "styles/components/_editPage.scss";
 
 type Props = {};
 
@@ -50,8 +50,7 @@ const Login = () => {
   };
 
   return (
-    <EditLayout layoutClassname="login-layout">
-      <Title className="edit-title">Вхід</Title>
+    <EditLayout layoutClassname="login-layout" titleName={"Вхід"}>
       <Form form={form} className="edit-form" onFinish={onSubmit}>
         {loginFormItems.map((item, i) => (
           <Form.Item

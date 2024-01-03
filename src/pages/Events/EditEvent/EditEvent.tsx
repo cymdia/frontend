@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   DatePicker,
   DatePickerProps,
@@ -6,9 +8,6 @@ import {
   Select,
   SelectProps,
 } from "antd";
-import Title from "antd/es/typography/Title";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { AppDispatch } from "state/store";
 
@@ -127,8 +126,7 @@ const EditEvent = (props: Props) => {
   };
 
   return (
-    <EditLayout>
-      <Title className="edit-title">Додати Подію</Title>
+    <EditLayout titleName={"Додати Подію"}>
       <Form form={form} className="edit-form" onFinish={onSubmit}>
         {editEventFormItems.map((item, i) =>
           i < 6 ? (
