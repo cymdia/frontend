@@ -10,6 +10,11 @@ interface StateWithItems<C> {
   error: any;
   needUpdate: boolean;
 }
+interface StateAuth<C> {
+  user: C;
+  isLoading: boolean;
+  error: any;
+}
 
 export const handleFetchItemsFulfilled = <C, T extends StateWithItems<C>, E>(
   state: T,
@@ -65,3 +70,13 @@ export const handleEditItemFulfilled = <
     error: null,
   };
 };
+
+export const handleLoginFulfilled = <C, T extends StateAuth<C>, E>(
+  state: T,
+  action: PayloadAction<E>,
+): T => ({
+  ...state,
+  user: action.payload,
+  isLoading: false,
+  error: null,
+});

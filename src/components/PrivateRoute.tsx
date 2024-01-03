@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { useLocalState } from "hooks/useLocalState";
 import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "state/store";
 
 type Props = {
   children: React.ReactElement;
 };
 
 const PrivateRoute = ({ children }: Props) => {
-  const [jwt, setJwt] = useLocalState(null, "jwt");
-  useEffect(() => {
-    setJwt("1");
-  }, []);
-  return jwt ? children : <Navigate to="/login" />;
+  const { user } = useSelector((state: RootState) => state.auth);
+  return user?.token ? children : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
