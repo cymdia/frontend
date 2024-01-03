@@ -34,7 +34,7 @@ const loginFormItems: FormItemsType[] = [
   },
 ];
 
-const Login = () => {
+const Login = (props: Props) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
